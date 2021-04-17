@@ -1,0 +1,51 @@
+##Calculo de tamaño de muestra  para estimar la proporcion poblacional 
+# Cuando la población es finita.
+# N = total de población
+# Z= Según diferentes seguridades el coeficiente de Z varía, así o nivel de confianza:
+"• Si la seguridad Z fuese del 90% el coeficiente sería 1.645
+• Si la seguridad Z fuese del 95% el coeficiente sería 1.96
+• Si la seguridad Z fuese del 97.5% el coeficiente sería 2.24
+• Si la seguridad Z fuese del 99% el coeficiente sería 2.576"
+# p = proporcion de elementos esperada es indicada en porcentaje 5% = 0.05
+# d = Precision o error maximo tolerable 
+
+########################################################################
+pp <- function(N,Z,p,d)
+{
+  c <- (N*Z^2*p*(1-p))/(d^2*(N-1)+(Z^2*p*(1-p)))
+  return(c)
+}
+pp(15000,1.96, 0.05,0.03)
+
+########################################################################
+# Cuando la polación es infinita 
+pi <- function(Z,p,d)
+{
+  c <- (Z^2*p*(1-p))/d^2
+  return(c)
+}
+pi(1.96, 0.05,0.03)
+########################################################################
+##Calculo de tamaño de muestra  para estimar la media poblacional.
+# cuando la población es conocida, donde s es el valor des la desviacion standar. 
+mp <- function(N,Z,s,d)
+{
+  c <- (N*Z^2*s^2)/(s^2*Z^2+(N-1)*d^2)
+  return(c)
+}
+mp(5000,1.96,16.44,5)
+
+########################################################################
+#cuando la poblacion es infinita. 
+
+mi <- function(Z,s,d)
+{
+  c <- (Z*s)^2/d^2
+  return(c)
+}
+mi(1.96,16.44,5)
+
+########################################################################
+
+#Para analisis de calculo de muestreo aleatorio estratificado.
+#https://estadistica-dma.ulpgc.es/MGC/muestreo_Estratificado.html
